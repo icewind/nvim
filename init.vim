@@ -137,8 +137,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-    " let g:python_host_prog = '/Users/WeezLabs/Projects/envs/nvim/bin/python'
-    let g:python3_host_prog = '/Users/WeezLabs/Projects/envs/nvim/bin/python'
+    let g:python3_host_prog = $HOME . '/Projects/envs/nvim/bin/python'
     
     " Trigger completion insert by pressing enter key
     set completeopt=menu,noinsert
