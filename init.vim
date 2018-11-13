@@ -125,10 +125,18 @@ Plug 'majutsushi/tagbar' " Show tags for current buffer
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Raimondi/delimitMate' " Automatically close quotes and brackets
 Plug 'Shougo/deol.nvim' " Terminal for nvim
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+    let g:LanguageClient_autoStart = 1
+    set runtimepath+=~/.config/nvim/plugged/LanguageClient-neovim/
+    let g:LanguageClient_serverCommands = {
+        \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+        \ 'typescript': ['typescript-language-server', '--stdio']
+        \ }
 Plug 'w0rp/ale' " Syntax errors and checking / fixing
-    let g:ale_rust_cargo_use_check = 1
-    let g:ale_rust_cargo_check_tests = 1
-    let g:ale_rust_cargo_check_examples = 1
+    let g:ale_linters = {'rust': ['rls']}
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
