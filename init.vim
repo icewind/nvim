@@ -35,8 +35,6 @@ set wildignore+=*.orig                           " Merge resolution files
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-set bomb
-set binary
 
 "" Fix backspace indent
 set backspace=indent,eol,start
