@@ -125,6 +125,9 @@ Plug 'majutsushi/tagbar' " Show tags for current buffer
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Raimondi/delimitMate' " Automatically close quotes and brackets
 Plug 'Shougo/deol.nvim' " Terminal for nvim
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
