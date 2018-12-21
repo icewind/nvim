@@ -226,6 +226,7 @@ call plug#end()
 " --------------------------- HTML ----------------------------
 
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
+Plug 'mattn/emmet-vim'
 
 " ------------------------ TypeScript -------------------------
 
