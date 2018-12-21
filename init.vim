@@ -126,6 +126,8 @@ Plug 'Shougo/deol.nvim' " Terminal for nvim
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+"" Format files before save
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -220,13 +222,10 @@ if filereadable(expand("~/.config/nvim/local_bundles.vim"))
   source ~/.config/nvim/local_bundles.vim
 endif
 
-call plug#end()
-
-
 " --------------------------- HTML ----------------------------
 
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'scss', 'less'] }
 
 " ------------------------ TypeScript -------------------------
 
@@ -242,6 +241,8 @@ let g:javascript_enable_domhtmlcss = 1
 
 " Currently working mainly with Rust so need to revise my go
 " plugins and maybe refresh a list...
+
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance 
@@ -316,6 +317,9 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 
 nnoremap <F6> :setlocal spell! spell?<CR>
+
+"" Prettier
+nnoremap <M-Ï> :Prettier<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocmd 
