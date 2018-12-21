@@ -319,7 +319,7 @@ cnoreabbrev Qall qall
 nnoremap <F6> :setlocal spell! spell?<CR>
 
 "" Prettier
-nnoremap <M-Ï> :Prettier<cr>
+nnoremap <M-Ï> :PrettierAsync<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocmd 
