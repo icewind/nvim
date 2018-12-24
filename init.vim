@@ -122,6 +122,8 @@ Plug 'sheerun/vim-polyglot' " Consists of more than 100 file type plugins
 Plug 'majutsushi/tagbar' " Show tags for current buffer
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Raimondi/delimitMate' " Automatically close quotes and brackets
+    let delimitMate_expand_cr = 1
+    let delimitMate_expand_space = 1
 Plug 'Shougo/deol.nvim' " Terminal for nvim
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -155,7 +157,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     
     " Trigger completion insert by pressing enter key
     set completeopt=menu,noinsert
-    inoremap <silent><expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+    "" inoremap <silent><expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 
     if has('nvim')
       set runtimepath+=~/.config/nvim/plugged/deoplete.nvim/
@@ -231,6 +233,7 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'scss', 'less'] }
 
 " ------------------------ JavaScript -------------------------
 
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
 let g:javascript_enable_domhtmlcss = 1
 
 " --------------------------- Rust ----------------------------
