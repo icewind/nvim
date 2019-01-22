@@ -130,18 +130,22 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 "" Format files before save
     autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-    let g:LanguageClient_autoStart = 1
-    set runtimepath+=~/.config/nvim/plugged/LanguageClient-neovim/
-    let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-        \ 'typescript': ['typescript-language-server', '--stdio']
-        \ }
+"" Plug 'autozimu/LanguageClient-neovim', {
+""     \ 'branch': 'next',
+""     \ 'do': 'bash install.sh',
+""     \ }
+""     let g:LanguageClient_autoStart = 1
+""     set runtimepath+=~/.config/nvim/plugged/LanguageClient-neovim/
+""     let g:LanguageClient_serverCommands = {
+""         \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+""         \ 'typescript': ['typescript-language-server', '--stdio']
+""         \ }
 Plug 'w0rp/ale' " Syntax errors and checking / fixing
     let g:ale_linters = {'rust': ['rls']}
+
+"" Integration with language server
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx, CocCommand tsserver.organizeImports
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -151,28 +155,28 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
     let g:NERDTreeWinSize = 50
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
-    let g:python3_host_prog = $HOME . '/Projects/envs/nvim/bin/python'
-    
-    " Trigger completion insert by pressing enter key
-    set completeopt=menu,noinsert
-    "" inoremap <silent><expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
-
-    if has('nvim')
-      set runtimepath+=~/.config/nvim/plugged/deoplete.nvim/
-      let g:deoplete#enable_at_startup = 1
-      let g:deoplete#ignore_sources = {}
-      let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag', 'file', 'neosnippet']
-      let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
-      let g:deoplete#sources#go#align_class = 1
-
-
-      " Use partial fuzzy matches like YouCompleteMe
-      call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
-      call deoplete#custom#source('_', 'converters', ['converter_remove_paren'])
-      call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
-    endif
+"" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"" 
+""     let g:python3_host_prog = $HOME . '/Projects/envs/nvim/bin/python'
+""     
+""     " Trigger completion insert by pressing enter key
+""     set completeopt=menu,noinsert
+""     "" inoremap <silent><expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+"" 
+""     if has('nvim')
+""       set runtimepath+=~/.config/nvim/plugged/deoplete.nvim/
+""       let g:deoplete#enable_at_startup = 1
+""       let g:deoplete#ignore_sources = {}
+""       let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag', 'file', 'neosnippet']
+""       let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
+""       let g:deoplete#sources#go#align_class = 1
+"" 
+"" 
+""       " Use partial fuzzy matches like YouCompleteMe
+""       call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
+""       call deoplete#custom#source('_', 'converters', ['converter_remove_paren'])
+""       call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+""     endif
 
 Plug 'vim-airline/vim-airline'
     set laststatus=2
@@ -230,6 +234,9 @@ autocmd Filetype html setlocal ts=2 sw=2 expandtab
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'scss', 'less'] }
 
 " ------------------------ TypeScript -------------------------
+
+" *.tsx syntax highlight
+Plug 'peitalin/vim-jsx-typescript'
 
 " ------------------------ JavaScript -------------------------
 
@@ -306,6 +313,10 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
+
+"" Switching buffers
+:nnoremap <C-n> :bnext<CR>
+:nnoremap <C-p> :bprevious<CR>
 
 "" no one is really happy until you have this shortcuts
 cnoreabbrev W! w!
