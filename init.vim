@@ -143,10 +143,21 @@ Plug 'prettier/vim-prettier', {
 Plug 'w0rp/ale' " Syntax errors and checking / fixing
     let g:ale_linters = {'rust': ['rls']}
     let g:ale_sign_column_always = 1 " Keep ALE gutter on the screen
+    let g:airline#extensions#ale#enabled = 1
 
 "" Integration with language server
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
     autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx, CocCommand tsserver.organizeImports
+    
+    " Use K for show documentation in preview window
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+    function! s:show_documentation()
+      if &filetype == 'vim'
+        execute 'h '.expand('<cword>')
+      else
+        call CocAction('doHover')
+      endif
+    endfunction
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
