@@ -142,6 +142,7 @@ Plug 'prettier/vim-prettier', {
 ""         \ }
 Plug 'w0rp/ale' " Syntax errors and checking / fixing
     let g:ale_linters = {'rust': ['rls']}
+    let g:ale_sign_column_always = 1 " Keep ALE gutter on the screen
 
 "" Integration with language server
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
@@ -154,29 +155,6 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     let g:nerdtree_tabs_focus_on_files=1
     let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
     let g:NERDTreeWinSize = 50
-
-"" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"" 
-""     let g:python3_host_prog = $HOME . '/Projects/envs/nvim/bin/python'
-""     
-""     " Trigger completion insert by pressing enter key
-""     set completeopt=menu,noinsert
-""     "" inoremap <silent><expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
-"" 
-""     if has('nvim')
-""       set runtimepath+=~/.config/nvim/plugged/deoplete.nvim/
-""       let g:deoplete#enable_at_startup = 1
-""       let g:deoplete#ignore_sources = {}
-""       let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag', 'file', 'neosnippet']
-""       let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
-""       let g:deoplete#sources#go#align_class = 1
-"" 
-"" 
-""       " Use partial fuzzy matches like YouCompleteMe
-""       call deoplete#custom#source('_', 'matchers', ['matcher_fuzzy'])
-""       call deoplete#custom#source('_', 'converters', ['converter_remove_paren'])
-""       call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
-""     endif
 
 Plug 'vim-airline/vim-airline'
     set laststatus=2
@@ -334,6 +312,23 @@ nnoremap <F6> :setlocal spell! spell?<CR>
 
 "" Prettier
 nnoremap <M-Ï> :PrettierAsync<cr>
+
+"" Rename refactor
+nmap <F2> <Plug>(coc-rename) 
+
+"" Coc show diagnostic message
+nmap <leader>d <Plug>(coc-diagnostic-info)
+
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocmd 
