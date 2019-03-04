@@ -211,6 +211,7 @@ endif
 " --------------------------- Git ------------------------------
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'rbong/vim-flog' " Git branch viewer
 
 " Include user's extra bundle
 if filereadable(expand("~/.config/nvim/local_bundles.vim"))
