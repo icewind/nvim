@@ -342,6 +342,13 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Show commands
+nnoremap <silent> <M-SP> :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <M-SO> :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <M-t> :<C-u>CocList -I symbols<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autocmd 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
