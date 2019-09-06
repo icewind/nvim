@@ -1,0 +1,7 @@
+{
+  "prettier.formatterPriority": 5,
+  "coc.preferences.triggerSignatureHelp": true,
+  "coc.preferences.hoverTarget": "float",
+  "signature.target": "float",
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+}
