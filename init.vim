@@ -327,7 +327,12 @@ nnoremap <M-Ï> :Prettier<cr>
 nmap <F2> <Plug>(coc-rename) 
 
 "" Coc show diagnostic message
-nmap <leader>d <Plug>(coc-diagnostic-info)
+nmap <leader>d <Plug>(coc-diagnostic-info)<CR>
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 
 " Use `[c` and `]c` for navigate diagnostics
@@ -356,10 +361,6 @@ if has("autocmd")
     filetype plugin indent on
 
     " Remember the last cursor position
-    augroup vimrc-remember-cursor-position
-        autocmd!
-        autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-    augroup END
     augroup vimrc-remember-cursor-position
         autocmd!
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
