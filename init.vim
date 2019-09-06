@@ -125,21 +125,7 @@ Plug 'Raimondi/delimitMate' " Automatically close quotes and brackets
     let delimitMate_expand_cr = 1
     let delimitMate_expand_space = 1
 Plug 'Shougo/deol.nvim' " Terminal for nvim
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'typescript.tsx', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-"" Format files before save
-    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-"" Plug 'autozimu/LanguageClient-neovim', {
-""     \ 'branch': 'next',
-""     \ 'do': 'bash install.sh',
-""     \ }
-""     let g:LanguageClient_autoStart = 1
-""     set runtimepath+=~/.config/nvim/plugged/LanguageClient-neovim/
-""     let g:LanguageClient_serverCommands = {
-""         \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-""         \ 'typescript': ['typescript-language-server', '--stdio']
-""         \ }
+
 Plug 'w0rp/ale' " Syntax errors and checking / fixing
     let g:ale_linters = {'rust': ['rls']}
     let g:ale_sign_column_always = 1 " Keep ALE gutter on the screen
@@ -147,8 +133,6 @@ Plug 'w0rp/ale' " Syntax errors and checking / fixing
 
 "" Integration with language server
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx, CocCommand tsserver.organizeImports
-    
     " Use K for show documentation in preview window
     nnoremap <silent> K :call <SID>show_documentation()<CR>
     function! s:show_documentation()
@@ -158,6 +142,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
         call CocAction('doHover')
       endif
     endfunction
+    command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -236,13 +221,26 @@ let g:javascript_enable_domhtmlcss = 1
 " --------------------------- Rust ----------------------------
 
 
-
 " ---------------------------- Go ----------------------------
 
-" Currently working mainly with Rust so need to revise my go
-" plugins and maybe refresh a list...
-
 call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto commands 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup prewrites
+    autocmd!
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx, CocCommand tsserver.organizeImports
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+augroup END
+
+augroup coc
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Appearance 
@@ -323,7 +321,7 @@ cnoreabbrev Qall qall
 nnoremap <F6> :setlocal spell! spell?<CR>
 
 "" Prettier
-nnoremap <M-Ï> :PrettierAsync<cr>
+nnoremap <M-Ï> :Prettier<cr>
 
 "" Rename refactor
 nmap <F2> <Plug>(coc-rename) 
