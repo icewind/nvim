@@ -143,6 +143,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
       endif
     endfunction
     command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+    command! -nargs=0 OrganizeImports :call CocAction('runCommand', 'tsserver.organizeImports')
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     let g:NERDTreeIgnore=['\.rbc$', '\~$', '\.pyc$', '\.db$', '\.sqlite$', '__pycache__']
@@ -230,7 +231,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup prewrites
     autocmd!
-    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx, CocCommand tsserver.organizeImports
+    " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx, CocCommand tsserver.organizeImports
     autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
 augroup END
 
@@ -322,6 +323,9 @@ nnoremap <F6> :setlocal spell! spell?<CR>
 
 "" Prettier
 nnoremap <M-Ï> :Prettier<cr>
+
+"" Organize imports
+nnoremap Ø :OrganizeImports<CR>
 
 "" Rename refactor
 nmap <F2> <Plug>(coc-rename) 
