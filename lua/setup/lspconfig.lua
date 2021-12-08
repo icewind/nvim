@@ -27,13 +27,13 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- OmniSharp
 local pid = vim.fn.getpid()
-local omnisharp_path = "/Users/icewind/tools/omnisharp/run"
+local omnisharp_path = '/Users/icewind/tools/omnisharp/run'
 require'lspconfig'.omnisharp.setup {
 	capabilities = capabilities,
 	on_attach = function(_, bufnr)
 		vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 	end,
-	cmd = {omnisharp_path, "--languageserver" , "--hostPID", tostring(pid) }
+	cmd = {omnisharp_path, '--languageserver' , '--hostPID', tostring(pid) }
 }
 
 

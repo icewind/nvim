@@ -61,6 +61,9 @@ require('packer').startup(function(use)
 		config = get_config('bufferline')
 	}
 
+	-- TODO: Replace this vim lua analog once it will be as functional
+	use 'tpope/vim-surround'
+
 	use({
     	"lewis6991/gitsigns.nvim",
       	requires = { "nvim-lua/plenary.nvim" },
