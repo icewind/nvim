@@ -25,8 +25,8 @@ map("n", "<esc>", ":noh<cr><esc>", { silent = true })
 -- map("n", "<F12>", ":FloatermToggle<CR>")
 
 -- Hop(EasyMotion) for normal and visual modes
-map("n", "<leader>s", "<cmd>lua require'hop'.hint_words()<cr>")
-map("v", "<leader>s", "<cmd>lua require'hop'.hint_words()<cr>")
+map("n", "<leader>s", "<cmd>lua require'hop'.hint_char1()<cr>")
+map("v", "<leader>s", "<cmd>lua require'hop'.hint_char1()<cr>")
 
 -- Symbols outline
 map("n", "<leader>o", ":SymbolsOutline<cr>")
