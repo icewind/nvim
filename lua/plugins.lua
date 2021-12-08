@@ -81,6 +81,9 @@ require('packer').startup(function(use)
   		end
 	}
 
+	-- .NET Development
+	use { 'OmniSharp/omnisharp-vim', config = get_config('omnisharp') }
+
 	-- Lua development(mainly for neovim)
 	use 'tjdevries/nlua.nvim' -- Language server for Lua
 	use 'euclidianAce/BetterLua.vim' -- Better syntax highlight
