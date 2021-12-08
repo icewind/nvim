@@ -33,7 +33,11 @@ require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim' -- Package manager
 
 	-- Select all the things with a nice UI
-	use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+	use {
+		'nvim-telescope/telescope.nvim',
+		requires = { 'nvim-lua/plenary.nvim' },
+		config = get_config('telescope')
+	}
 
 	-- Superior syntax highlight
 	use {
@@ -48,6 +52,13 @@ require('packer').startup(function(use)
 		'nvim-lualine/lualine.nvim',
 		requires = {'kyazdani42/nvim-web-devicons', opt = true},
 		config = get_config('lualine')
+	}
+
+	-- And buffers line
+	use {
+		'akinsho/bufferline.nvim',
+		requires = 'kyazdani42/nvim-web-devicons',
+		config = get_config('bufferline')
 	}
 
 	use({

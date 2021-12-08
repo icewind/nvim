@@ -1,6 +1,33 @@
+local function map(mode, lhs, rhs, opts)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
 --Remap for dealing with word wrap
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
+
+-- Switch buffers
+map("n", "<Tab>", ":bnext<CR>")
+map("n", "<S-Tab>", ":bprevious<CR>")
+
+--After searching, pressing escape stops the highlight
+map("n", "<esc>", ":noh<cr><esc>", { silent = true })
+
+-- Telescope
+map("n", "<leader>p", '<cmd>lua require("telescope.builtin").find_files()<cr>')
+map("n", "<leader>g", '<cmd>lua require("telescope.builtin").live_grep()<cr>')
+map("n", "<leader>b", '<cmd>lua require("telescope.builtin").buffers()<cr>')
+
+map("n", "<leader>i", '<cmd>lua require("telescope.builtin").git_status()<cr>')
+
+map("n", "<leader>ca", '<cmd>lua require("telescope.builtin").lsp_code_actions()<cr>')
+map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
+map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").lsp_document_diagnostics()<cr>')
+map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
