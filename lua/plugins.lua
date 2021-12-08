@@ -32,6 +32,14 @@ vim.cmd[[
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim' -- Package manager
 
+	-- Need to check the following plugings. I got used to git cli so will see if they are needed
+	-- use 'tpope/vim-fugitive' -- Git commands in nvim
+	-- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
+
+	use 'tpope/vim-commentary' -- Create/remove comments using gc
+
+	use 'voldikss/vim-floaterm' -- Floating terminal
+
 	-- Select all the things with a nice UI
 	use {
 		'nvim-telescope/telescope.nvim',
@@ -63,6 +71,12 @@ require('packer').startup(function(use)
 
 	-- TODO: Replace this vim lua analog once it will be as functional
 	use 'tpope/vim-surround'
+
+	use({
+		"phaazon/hop.nvim",
+		event = "BufReadPre",
+		config = get_config("hop"),
+    })
 
 	use({
     	"lewis6991/gitsigns.nvim",
