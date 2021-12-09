@@ -47,13 +47,20 @@ require('packer').startup(function(use)
 		config = get_config('telescope')
 	}
 
-	-- Superior syntax highlight
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		config = get_config('treesitter'),
 		run = ':TSUpdate'
 	}
   	use 'nvim-treesitter/nvim-treesitter-textobjects'
+
+	use {
+		'kyazdani42/nvim-tree.lua',
+		requires = {
+			'kyazdani42/nvim-web-devicons', -- optional, for file icon
+		},
+		config = get_config('tree')
+	}
 
 	-- Status line
 	use {

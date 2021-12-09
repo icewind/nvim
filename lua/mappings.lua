@@ -31,6 +31,11 @@ map("v", "<leader>s", "<cmd>lua require'hop'.hint_char1()<cr>")
 -- Symbols outline
 map("n", "<leader>o", ":SymbolsOutline<cr>")
 
+-- Filetree
+map('n', '<M-b>', ':NvimTreeToggle<CR>')
+map('n', '<leader>r', ':NvimTreeRefresh<CR>')
+map('n', '<leader>n', ':NvimTreeFindFile<CR>')
+
 -- Telescope
 map("n", "<leader>p", '<cmd>lua require("telescope.builtin").find_files()<cr>')
 map("n", "<leader>g", '<cmd>lua require("telescope.builtin").live_grep()<cr>')
