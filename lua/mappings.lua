@@ -47,3 +47,14 @@ map("n", "<leader>ca", '<cmd>lua require("telescope.builtin").lsp_code_actions()
 map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
 map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").diagnostics{ bufnr=0 }<cr>')
 map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
+
+-- Display diagnostics messages
+vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
+  {silent = true, noremap = true}
+)
+vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>",
+  {silent = true, noremap = true}
+)
+vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>",
+  {silent = true, noremap = true}
+)
