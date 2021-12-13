@@ -40,7 +40,7 @@ end
 local pid = vim.fn.getpid()
 local omnisharp_path = '/Users/icewind/tools/omnisharp/run'
 
-vim.g.OmniSharp_highlighting = 2
+vim.g.OmniSharp_highlighting = 0
 require'lspconfig'.omnisharp.setup {
 	capabilities = capabilities,
 	on_attach = function(_, bufnr)

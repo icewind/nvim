@@ -38,6 +38,7 @@ require('packer').startup(function(use)
 
 	-- Color themes
 	use 'sainnhe/everforest'
+	use 'sainnhe/sonokai'
 
 	use 'tpope/vim-commentary' -- Create/remove comments using gc
 
