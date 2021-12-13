@@ -25,6 +25,16 @@ vim.cmd [[
 	colorscheme everforest
 ]]
 
+-- Remember the last cursor position
+vim.cmd [[
+	filetype plugin indent on
+
+    augroup vim-remember-cursor-position
+        autocmd!
+        autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    augroup END
+]]
+
 -- Always show signs column
 opt.signcolumn = 'yes:1'
 
