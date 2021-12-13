@@ -36,6 +36,9 @@ require('packer').startup(function(use)
 	-- use 'tpope/vim-fugitive' -- Git commands in nvim
 	-- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
 
+	-- Color themes
+	use 'sainnhe/everforest'
+
 	use 'tpope/vim-commentary' -- Create/remove comments using gc
 
 	use 'voldikss/vim-floaterm' -- Floating terminal
