@@ -10,5 +10,8 @@ require('telescope').setup{
 			'--smart-case',
 			'-u'
 		},
+		preview = {
+			treesitter = false
+		}
 	}
 }

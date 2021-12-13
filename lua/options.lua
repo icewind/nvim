@@ -37,7 +37,7 @@ opt.colorcolumn = '120'
 opt.splitright = true
 opt.splitbelow = true
 
--- Formatting options
+-- Default formatting options
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.smartindent =true

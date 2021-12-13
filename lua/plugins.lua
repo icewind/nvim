@@ -54,6 +54,7 @@ require('packer').startup(function(use)
 	}
   	use 'nvim-treesitter/nvim-treesitter-textobjects'
 
+	-- File manager
 	use {
 		'kyazdani42/nvim-tree.lua',
 		requires = {
@@ -97,16 +98,24 @@ require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		config = get_config('lspconfig')
 	}
+
     use {
 		'hrsh7th/nvim-cmp',
 		config = get_config('cmp')
 	}
+
 	use 'hrsh7th/cmp-nvim-lsp'
 
 	use 'mattn/emmet-vim'
 
+	use {
+		'windwp/nvim-autopairs',
+		config = get_config('autopairs')
+	}
+
 	-- Snippets and integration of snippets and cmp
 	use 'saadparwaiz1/cmp_luasnip'
+
   	use 'L3MON4D3/LuaSnip'
 
 	-- Display code issues
