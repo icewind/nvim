@@ -36,9 +36,10 @@ require('packer').startup(function(use)
 	-- use 'tpope/vim-fugitive' -- Git commands in nvim
 	-- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
 
-	-- Color themes
+	-- Favorite color themes
 	use 'sainnhe/everforest'
 	use 'sainnhe/sonokai'
+	use 'arcticicestudio/nord-vim'
 
 	use 'tpope/vim-commentary' -- Create/remove comments using gc
 
@@ -106,6 +107,12 @@ require('packer').startup(function(use)
     use {
 		'hrsh7th/nvim-cmp',
 		config = get_config('cmp')
+	}
+
+	-- Show function signature on type
+	use {
+		'ray-x/lsp_signature.nvim',
+		config = get_config('lspsignature')
 	}
 
 	use 'hrsh7th/cmp-nvim-lsp'

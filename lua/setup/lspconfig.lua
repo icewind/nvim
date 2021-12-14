@@ -44,6 +44,8 @@ require'lspconfig'.omnisharp.setup {
 	capabilities = capabilities,
 	on_attach = function(_, bufnr)
 		vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+		-- Add lsp keymaps for this buffer
+		on_attach(_, bufnr)
 	end,
 	cmd = {
 		omnisharp_path,
