@@ -17,6 +17,16 @@ vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true,
 map("n", "<Tab>", ":bnext<CR>")
 map("n", "<S-Tab>", ":bprevious<CR>")
 
+-- Better window navigation
+map('n', '<C-h>', '<C-w>h')
+map('n', '<C-j>', '<C-w>j')
+map('n', '<C-k>', '<C-w>k')
+map('n', '<C-l>', '<C-w>l')
+
+-- Create splits easily
+map('n', '<leader>h', ':split<cr>')
+map('n', '<leader>v', ':vsplit<cr>')
+
 --After searching, pressing escape stops the highlight
 map("n", "<esc>", ":noh<cr><esc>", { silent = true })
 
