@@ -71,7 +71,7 @@ g.nounofile = true
 vim.cmd [[
 	augroup highlight_yank
 		autocmd!
-		au TextYankPost * silent! lua vim.highlight.on_yank{higroup="ColorColumn", timeout=400}
+		au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=400}
 	augroup END
 ]]
 
