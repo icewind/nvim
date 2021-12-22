@@ -66,3 +66,7 @@ g.nobackup = true
 g.noswapfile = true
 g.nounofile = true
 
+
+-- Autocompletion
+opt.completeopt = 'menu,menuone,noselect'
+
