@@ -109,13 +109,18 @@ require('packer').startup(function(use)
 		config = get_config('cmp')
 	}
 
+	-- Get completions from the LSP
+	use 'hrsh7th/cmp-nvim-lsp'
+	-- Get completions from the current buffer
+	use 'hrsh7th/cmp-buffer'
+	-- Snippets and integration of snippets and cmp
+	use 'saadparwaiz1/cmp_luasnip'
+
 	-- Show function signature on type
 	use {
 		'ray-x/lsp_signature.nvim',
 		config = get_config('lspsignature')
 	}
-
-	use 'hrsh7th/cmp-nvim-lsp'
 
 	use 'mattn/emmet-vim'
 
@@ -124,8 +129,6 @@ require('packer').startup(function(use)
 		config = get_config('autopairs')
 	}
 
-	-- Snippets and integration of snippets and cmp
-	use 'saadparwaiz1/cmp_luasnip'
 
   	use 'L3MON4D3/LuaSnip'
 

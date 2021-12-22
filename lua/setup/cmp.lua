@@ -20,6 +20,8 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+	{ name = 'luasnip' },
+	-- Don't look at the current buffer for the word smaller than 5 chars
+	{ name = 'buffer', keyword_length = 5 }
   },
 }
