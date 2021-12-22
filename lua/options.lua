@@ -59,12 +59,21 @@ opt.si = true
 opt.hlsearch = true
 opt.incsearch = true
 opt.smartcase = true
+opt.ignorecase = true
 opt.showmatch = true
 
 -- Disable swap files. No need because of version control systems
 g.nobackup = true
 g.noswapfile = true
 g.nounofile = true
+
+-- Highlight yanked text
+vim.cmd [[
+	augroup highlight_yank
+		autocmd!
+		au TextYankPost * silent! lua vim.highlight.on_yank{higroup="ColorColumn", timeout=400}
+	augroup END
+]]
 
 
 -- Autocompletion
