@@ -246,18 +246,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require("setup/lualine")
-time([[Config for lualine.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require("setup/lspconfig")
-time([[Config for nvim-lspconfig]], false)
 -- Config for: bufferline.nvim
 time([[Config for bufferline.nvim]], true)
 require("setup/bufferline")
 time([[Config for bufferline.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require("setup/lspconfig")
+time([[Config for nvim-lspconfig]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 require("setup/tree")
@@ -270,6 +266,10 @@ time([[Config for telescope.nvim]], false)
 time([[Config for nvim-treesitter]], true)
 require("setup/treesitter")
 time([[Config for nvim-treesitter]], false)
+-- Config for: lsp_signature.nvim
+time([[Config for lsp_signature.nvim]], true)
+require("setup/lspsignature")
+time([[Config for lsp_signature.nvim]], false)
 -- Config for: trouble.nvim
 time([[Config for trouble.nvim]], true)
 require("setup/trouble")
@@ -278,10 +278,10 @@ time([[Config for trouble.nvim]], false)
 time([[Config for nvim-autopairs]], true)
 require("setup/autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: lsp_signature.nvim
-time([[Config for lsp_signature.nvim]], true)
-require("setup/lspsignature")
-time([[Config for lsp_signature.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require("setup/lualine")
+time([[Config for lualine.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require("setup/cmp")
@@ -294,6 +294,10 @@ time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'gitsigns.nvim', 'hop.nvim'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
