@@ -144,6 +144,13 @@ require('packer').startup(function(use)
 	use 'euclidianAce/BetterLua.vim' -- Better syntax highlight
 	use 'tjdevries/manillua.nvim' -- Folds for Lua code
 
+	-- Markdown preview
+	use {
+		'iamcco/markdown-preview.nvim',
+		run = 'cd app && yarn install',
+		cmd = 'MarkdownPreview'
+	}
+
 	-- Automatically setup packer configuration after the first install
 	if packer_bootstrap then
     	require('packer').sync()
