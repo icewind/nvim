@@ -13,44 +13,44 @@ opt.hidden = true
 
 -- Language settings
 -- TODO: Find another spell checker. Embedded spell checker is pretty bad dealing with CamelCase words
-opt.spelllang= { 'en_us' }
+opt.spelllang = { "en_us" }
 
 -- Encoding options
-opt.encoding = 'utf-8'
-opt.fileencoding = 'utf-8'
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
 
 -- Editor appearance
-vim.cmd [[
+vim.cmd([[
 	let g:everforest_background = 'hard'
 	colorscheme everforest
-]]
+]])
 
 -- Remember the last cursor position
-vim.cmd [[
+vim.cmd([[
 	filetype plugin indent on
 
     augroup vim-remember-cursor-position
         autocmd!
         autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
     augroup END
-]]
+]])
 
 -- Always show signs column
-opt.signcolumn = 'yes:1'
+opt.signcolumn = "yes:1"
 
 opt.termguicolors = true
 opt.number = true
 opt.relativenumber = true
 opt.ruler = true
-opt.background = 'dark'
-opt.colorcolumn = '120'
+opt.background = "dark"
+opt.colorcolumn = "120"
 opt.splitright = true
 opt.splitbelow = true
 
 -- Default formatting options
 opt.shiftwidth = 4
 opt.tabstop = 4
-opt.smartindent =true
+opt.smartindent = true
 opt.wrap = false
 opt.ai = true
 opt.si = true
@@ -68,14 +68,12 @@ g.noswapfile = true
 g.nounofile = true
 
 -- Highlight yanked text
-vim.cmd [[
+vim.cmd([[
 	augroup highlight_yank
 		autocmd!
 		au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=400}
 	augroup END
-]]
-
+]])
 
 -- Autocompletion
-opt.completeopt = 'menu,menuone,noselect'
-
+opt.completeopt = "menu,menuone,noselect"
