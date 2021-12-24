@@ -27,6 +27,11 @@ map('n', '<C-l>', '<C-w>l')
 map('n', '<leader>h', ':split<cr>')
 map('n', '<leader>v', ':vsplit<cr>')
 
+map('n', '<C-S-Left>', ':vertical resize +3<cr>', {noremap = true, silent = true})
+map('n', '<C-S-Right>', ':vertical resize -3<cr>', {noremap = true, silent = true})
+map('n', '<C-S-Up>', ':resize +3<cr>', {noremap = true, silent = true})
+map('n', '<C-S-Down>', ':resize -3<cr>', {noremap = true, silent = true})
+
 --After searching, pressing escape stops the highlight
 map("n", "<esc>", ":noh<cr><esc>", { silent = true })
 
