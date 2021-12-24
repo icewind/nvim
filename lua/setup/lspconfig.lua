@@ -50,14 +50,31 @@ require'lspconfig'.omnisharp.setup {
 
 -- Development of lua plugins and neovim configuration files
 local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
+local library = {}
+
+if string.find(vim.fn.getcwd(), 'nvim') then
+	-- Setup the environment for plugin development
+	table.insert(runtime_path, 'lua/?.lua')
+	table.insert(runtime_path, 'lua/?/init.lua')
+
+	-- TODO: Check if I need to exclude some plugins and adjust this table
+	library = vim.api.nvim_get_runtime_file('', true)
+else
+	-- Usual lua application/module
+	table.insert(runtime_path, '?.lua')
+	table.insert(runtime_path, '?/init.lua')
+	library = {
+		'/usr/local/bin/lua'
+	}
+end
 
 -- This language server installed using homebrew
 require('lspconfig').sumneko_lua.setup {
-	cmd = { '/usr/local/Cellar/lua-language-server/2.5.3/bin/lua-language-server' },
+	cmd = {'/usr/local/Cellar/lua-language-server/2.5.3/bin/lua-language-server'},
 	on_attach = on_attach,
 	capabilities = capabilities,
+	filetypes = {'lua'},
+	rootPatterns = '.git/',
 	settings = {
 		Lua = {
 			runtime = {
@@ -65,10 +82,11 @@ require('lspconfig').sumneko_lua.setup {
 				path = runtime_path,
 			},
 			diagnostics = {
-				globals = { 'vim' },
+				globals = {'vim'},
 			},
 			workspace = {
-				library = vim.api.nvim_get_runtime_file('', true),
+				library = library,
+				useGitIgnore = true
 			},
 			telemetry = {
 				enable = false,
