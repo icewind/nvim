@@ -43,8 +43,6 @@ require("packer").startup(function(use)
 
 	use("tpope/vim-commentary") -- Create/remove comments using gc
 
-	use("voldikss/vim-floaterm") -- Floating terminal
-
 	-- Select all the things with a nice UI
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -116,7 +114,7 @@ require("packer").startup(function(use)
 	-- Snippets and integration of snippets and cmp
 	use("saadparwaiz1/cmp_luasnip")
 
-	use {"jose-elias-alvarez/null-ls.nvim", config = get_config("nullls")}
+	use({ "jose-elias-alvarez/null-ls.nvim", config = get_config("nullls") })
 
 	-- Show function signature on type
 	use({

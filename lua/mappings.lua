@@ -35,15 +35,12 @@ map("n", "<C-S-Down>", ":resize -3<cr>", { noremap = true, silent = true })
 --After searching, pressing escape stops the highlight
 map("n", "<esc>", ":noh<cr><esc>", { silent = true })
 
--- Call the floaterm
--- This not currently works as expected since after you open a terminal there is no way to toggle it in MacOS...
--- map("n", "<F12>", ":FloatermToggle<CR>")
-
 -- Hop(EasyMotion) for normal and visual modes
 map("n", "<leader>s", "<cmd>lua require'hop'.hint_char1()<cr>")
 map("v", "<leader>s", "<cmd>lua require'hop'.hint_char1()<cr>")
 
 -- Filetree
+-- M is mapped to Cmd in iTerm2 preferences
 map("n", "<M-b>", ":NvimTreeToggle<CR>")
 
 -- Telescope
