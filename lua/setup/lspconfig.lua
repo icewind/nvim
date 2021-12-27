@@ -34,7 +34,7 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
--- OmniSharp
+-- .NET Development using OmniSharp(standalone)
 local pid = vim.fn.getpid()
 local omnisharp_path = "/Users/icewind/tools/omnisharp/run"
 
