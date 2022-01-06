@@ -247,14 +247,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-require("setup/trouble")
-time([[Config for trouble.nvim]], false)
--- Config for: bufferline.nvim
-time([[Config for bufferline.nvim]], true)
-require("setup/bufferline")
-time([[Config for bufferline.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require("setup/autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: null-ls.nvim
+time([[Config for null-ls.nvim]], true)
+require("setup/nullls")
+time([[Config for null-ls.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require("setup/cmp")
@@ -263,22 +263,18 @@ time([[Config for nvim-cmp]], false)
 time([[Config for nvim-lspconfig]], true)
 require("setup/lspconfig")
 time([[Config for nvim-lspconfig]], false)
--- Config for: null-ls.nvim
-time([[Config for null-ls.nvim]], true)
-require("setup/nullls")
-time([[Config for null-ls.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require("setup/autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require("setup/tree")
-time([[Config for nvim-tree.lua]], false)
 -- Config for: lsp_signature.nvim
 time([[Config for lsp_signature.nvim]], true)
 require("setup/lspsignature")
 time([[Config for lsp_signature.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require("setup/tree")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require("setup/lualine")
+time([[Config for lualine.nvim]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 require("setup/telescope")
@@ -287,10 +283,14 @@ time([[Config for telescope.nvim]], false)
 time([[Config for nvim-treesitter]], true)
 require("setup/treesitter")
 time([[Config for nvim-treesitter]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require("setup/lualine")
-time([[Config for lualine.nvim]], false)
+-- Config for: bufferline.nvim
+time([[Config for bufferline.nvim]], true)
+require("setup/bufferline")
+time([[Config for bufferline.nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+require("setup/trouble")
+time([[Config for trouble.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
