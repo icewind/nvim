@@ -60,7 +60,6 @@ local lua_library = {}
 local lua_globals = {}
 
 if string.find(vim.fn.getcwd():lower(), "nvim") then
-	print("There is nvim in the path")
 	-- Setup the environment for plugin development
 	table.insert(runtime_path, "lua/?.lua")
 	table.insert(runtime_path, "lua/?/init.lua")
@@ -69,7 +68,6 @@ if string.find(vim.fn.getcwd():lower(), "nvim") then
 	-- TODO: Check if I need to exclude some plugins and adjust this table
 	lua_library = vim.api.nvim_get_runtime_file("", true)
 else
-	print("There is no nvim in the path")
 	-- Usual lua application/module
 	table.insert(runtime_path, "?.lua")
 	table.insert(runtime_path, "?/init.lua")
