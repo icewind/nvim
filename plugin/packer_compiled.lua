@@ -132,12 +132,6 @@ _G.packer_plugins = {
     path = "/Users/icewind/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
     url = "https://github.com/ray-x/lsp_signature.nvim"
   },
-  ["lspsaga.nvim"] = {
-    config = { 'require("setup/lspsaga")' },
-    loaded = true,
-    path = "/Users/icewind/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/tami5/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     config = { 'require("setup/lualine")' },
     loaded = true,
@@ -287,6 +281,10 @@ time([[Config for trouble.nvim]], false)
 time([[Config for nvim-cmp]], true)
 require("setup/cmp")
 time([[Config for nvim-cmp]], false)
+-- Config for: null-ls.nvim
+time([[Config for null-ls.nvim]], true)
+require("setup/nullls")
+time([[Config for null-ls.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require("setup/lspconfig")
@@ -303,14 +301,6 @@ time([[Config for bufferline.nvim]], false)
 time([[Config for nvim-notify]], true)
 require("setup/notify")
 time([[Config for nvim-notify]], false)
--- Config for: lspsaga.nvim
-time([[Config for lspsaga.nvim]], true)
-require("setup/lspsaga")
-time([[Config for lspsaga.nvim]], false)
--- Config for: null-ls.nvim
-time([[Config for null-ls.nvim]], true)
-require("setup/nullls")
-time([[Config for null-ls.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

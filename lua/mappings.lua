@@ -55,9 +55,6 @@ map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbo
 map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").diagnostics{ bufnr=0 }<cr>')
 map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
 
--- LSPSaga
-map("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<cr>", { noremap = true, silent = true })
-
 -- Display diagnostics messages
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", { silent = true, noremap = true })
