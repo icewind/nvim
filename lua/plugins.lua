@@ -96,10 +96,23 @@ require("packer").startup(function(use)
 		config = get_config("gitsigns"),
 	})
 
+	-- Fancy notifications
+	use({
+		"rcarriga/nvim-notify",
+		config = get_config("notify"),
+	})
+
 	-- Autocompletion and LSP
 	use({
 		"neovim/nvim-lspconfig",
 		config = get_config("lspconfig"),
+	})
+
+	-- Maintained fork of lspsaga
+	-- The original one is not working anymore
+	use({
+		"tami5/lspsaga.nvim",
+		config = get_config("lspsaga"),
 	})
 
 	use({
