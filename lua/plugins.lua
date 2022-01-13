@@ -157,6 +157,9 @@ require("packer").startup(function(use)
 		cmd = "MarkdownPreview",
 	})
 
+	-- Local plugins for machine-dependant extensions
+	require("local_plugins")(use)
+
 	-- Automatically setup packer configuration after the first install
 	if packer_bootstrap then
 		require("packer").sync()
