@@ -42,7 +42,7 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- .NET Development using OmniSharp(standalone)
 local pid = vim.fn.getpid()
-local omnisharp_path = "/Users/icewind/tools/omnisharp/run"
+local omnisharp_path = os.getenv("HOME") .. "/tools/omnisharp/run"
 
 require("lspconfig").omnisharp.setup({
 	capabilities = capabilities,
@@ -58,6 +58,14 @@ require("lspconfig").omnisharp.setup({
 		tostring(pid),
 		"FormattingOptions:OrganizeImports=true",
 	},
+})
+
+-- Grammar and writing style checks using language tool
+-- requires ltex-ls to be isntalled(downloaded)
+require("lspconfig").ltex.setup({
+	cmd = { os.getenv("HOME") .. "/tools/ltex-ls/bin/ltex-ls" },
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
 
 -- Development of lua plugins and neovim configuration files
