@@ -17,7 +17,7 @@ end
 
 -- Split plugin configuration into different files in the `setup` folder.
 local function get_config(name)
-	return string.format('require("setup/%s")', name)
+	return string.format('require("setup.%s")', name)
 end
 
 -- Automatically compile packer once the list of plugins changes
