@@ -149,6 +149,10 @@ require("packer").startup(function(use)
 	use("euclidianAce/BetterLua.vim") -- Better syntax highlight
 	use("tjdevries/manillua.nvim") -- Folds for Lua code
 
+	-- Markdown highlight and folding
+	-- Probably treesitter-markdown will be able to do this at some point
+	use("plasticboy/vim-markdown")
+
 	-- Markdown preview
 	use({
 		"iamcco/markdown-preview.nvim",
