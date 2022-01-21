@@ -68,6 +68,7 @@ g.noswapfile = true
 g.nounofile = true
 
 -- Using treesitter to fold/unfold
+vim.wo.foldlevel = 20
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
