@@ -67,6 +67,10 @@ g.nobackup = true
 g.noswapfile = true
 g.nounofile = true
 
+-- Using treesitter to fold/unfold
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+
 -- Highlight yanked text
 vim.cmd([[
 	augroup highlight_yank
