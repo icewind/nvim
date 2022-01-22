@@ -83,5 +83,5 @@ vim.cmd([[
 -- Autocompletion
 opt.completeopt = "menu,menuone,noselect"
 
--- Plugin options... They are not working if placed in ftplugins
-vim.g["vim_markdown_folding_disabled"] = true
+-- Code highlight in markdown files
+g.markdown_fenced_languages = { "rust", "cs", "typescript", "javascript", "python", "css" }
