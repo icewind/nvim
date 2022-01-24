@@ -6,6 +6,9 @@ cmp.setup({
 			luasnip.lsp_expand(args.body)
 		end,
 	},
+	formatting = {
+		format = require("lspkind").cmp_format(),
+	},
 	mapping = {
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),

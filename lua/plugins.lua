@@ -115,8 +115,13 @@ require("packer").startup(function(use)
 
 	-- Get completions from the LSP
 	use("hrsh7th/cmp-nvim-lsp")
+
+	-- Add kind icons into completion dropdown
+	use("onsails/lspkind-nvim")
+
 	-- Get completions from the current buffer
 	use("hrsh7th/cmp-buffer")
+	--
 	-- Snippets and integration of snippets and cmp
 	use("saadparwaiz1/cmp_luasnip")
 
