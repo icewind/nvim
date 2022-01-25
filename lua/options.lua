@@ -84,4 +84,4 @@ vim.cmd([[
 opt.completeopt = "menu,menuone,noselect"
 
 -- Code highlight in markdown files
-g.markdown_fenced_languages = { "rust", "cs", "typescript", "javascript", "python", "css" }
+g.markdown_fenced_languages = { "rust", "cs", "typescript", "javascript", "python", "css", "json" }
