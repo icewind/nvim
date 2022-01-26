@@ -1,4 +1,4 @@
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Generic LSP actions that are not bound to any specific plugin
@@ -35,6 +35,14 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fd", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
 
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+
+	-- Automatically format the file before save if the formatter is available
+	if client.resolved_capabilities.document_formatting then
+		vim.api.nvim_command("augroup FormatOnSave")
+		vim.api.nvim_command("autocmd! * <buffer>")
+		vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()")
+		vim.api.nvim_command("augroup END")
+	end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
