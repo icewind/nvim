@@ -1,3 +1,5 @@
+local files_in_folder = require("utils").files_in_folder
+
 local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -49,8 +51,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Require and set up specific language servers
-local servers = { "rust_analyzer", "tsserver", "html", "css", "omnisharp", "sumneko_lua", "ltex" }
-for _, server in pairs(servers) do
+for _, server in ipairs(files_in_folder({ "setup", "language_servers" })) do
 	require(string.format("setup.language_servers.%s", server))(capabilities, on_attach)
 end
 

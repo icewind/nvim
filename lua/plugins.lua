@@ -121,9 +121,6 @@ require("packer").startup(function(use)
 
 	-- Get completions from the current buffer
 	use("hrsh7th/cmp-buffer")
-	--
-	-- Snippets and integration of snippets and cmp
-	use("saadparwaiz1/cmp_luasnip")
 
 	use({ "jose-elias-alvarez/null-ls.nvim", config = get_config("nullls") })
 
@@ -140,7 +137,13 @@ require("packer").startup(function(use)
 		config = get_config("autopairs"),
 	})
 
-	use("L3MON4D3/LuaSnip")
+	use({
+		"L3MON4D3/LuaSnip",
+		config = get_config("luasnip"),
+	})
+
+	-- Snippets and integration of snippets and cmp
+	use("saadparwaiz1/cmp_luasnip")
 
 	-- Display code issues
 	use({
