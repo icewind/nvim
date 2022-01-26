@@ -41,7 +41,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 -- Require and set up specific language servers
-local servers = { "rust_analyzer", "tsserver", "omnisharp", "sumneko_lua", "ltex" }
+local servers = { "rust_analyzer", "tsserver", "html", "css", "omnisharp", "sumneko_lua", "ltex" }
 for _, server in pairs(servers) do
 	require(string.format("setup.language_servers.%s", server))(capabilities, on_attach)
 end
