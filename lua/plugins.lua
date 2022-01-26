@@ -145,6 +145,8 @@ require("packer").startup(function(use)
 	-- Snippets and integration of snippets and cmp
 	use("saadparwaiz1/cmp_luasnip")
 
+	use("rafamadriz/friendly-snippets")
+
 	-- Display code issues
 	use({
 		"folke/trouble.nvim",
