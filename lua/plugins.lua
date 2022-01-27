@@ -170,6 +170,13 @@ require("packer").startup(function(use)
 	-- Svelte support
 	use("leafOfTree/vim-svelte-plugin")
 
+	-- The allmighty Prettier
+	use({
+		"prettier/vim-prettier",
+		run = "yarn install",
+		ft = { "javascript", "typescript", "css", "less", "scss", "graphql", "markdown", "vue", "html" },
+	})
+
 	-- Local plugins for machine-dependant extensions
 	require("local_plugins")(use)
 
