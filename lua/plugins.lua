@@ -167,6 +167,9 @@ require("packer").startup(function(use)
 		cmd = "MarkdownPreview",
 	})
 
+	-- Svelte support
+	use("leafOfTree/vim-svelte-plugin")
+
 	-- Local plugins for machine-dependant extensions
 	require("local_plugins")(use)
 

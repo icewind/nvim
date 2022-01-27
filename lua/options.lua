@@ -85,3 +85,6 @@ opt.completeopt = "menu,menuone,noselect"
 
 -- Code highlight in markdown files
 g.markdown_fenced_languages = { "rust", "cs", "typescript", "javascript", "python", "css", "json" }
+
+-- Enable typescript syntax highlight for svelte files
+g.vim_svelte_plugin_use_typescript = 1
