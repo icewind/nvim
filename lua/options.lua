@@ -50,6 +50,7 @@ opt.splitbelow = true
 -- Default formatting options
 opt.shiftwidth = 2
 opt.tabstop = 2
+opt.expandtab = true
 opt.smartindent = true
 opt.wrap = false
 opt.ai = true
