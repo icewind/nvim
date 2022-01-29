@@ -46,7 +46,6 @@ map("n", "<M-b>", ":NvimTreeToggle<CR>")
 -- Telescope
 map("n", "<leader>p", '<cmd>lua require("telescope.builtin").find_files()<cr>')
 map("n", "<leader>g", '<cmd>lua require("telescope.builtin").live_grep()<cr>')
-map("n", "<leader>b", '<cmd>lua require("telescope.builtin").buffers()<cr>')
 
 map("n", "<leader>i", '<cmd>lua require("telescope.builtin").git_status()<cr>')
 
@@ -54,6 +53,9 @@ map("n", "<leader>ca", '<cmd>lua require("telescope.builtin").lsp_code_actions()
 map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
 map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").diagnostics{ bufnr=0 }<cr>')
 map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
+
+-- Bufferline
+map("n", "<leader>b", ":BufferLinePick<cr>")
 
 -- Display diagnostics messages
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true })
