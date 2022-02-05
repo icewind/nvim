@@ -145,7 +145,7 @@ require("packer").startup(function(use)
 	-- Snippets and integration of snippets and cmp
 	use("saadparwaiz1/cmp_luasnip")
 
-	use("rafamadriz/friendly-snippets")
+	-- use("rafamadriz/friendly-snippets")
 
 	-- Display code issues
 	use({
@@ -176,6 +176,10 @@ require("packer").startup(function(use)
 		run = "yarn install",
 		ft = { "javascript", "typescript", "css", "less", "scss", "graphql", "markdown", "vue", "html" },
 	})
+
+	-- Better rust development
+	-- Initialization of this plugin takes place in the lsp config
+	use({ "simrat39/rust-tools.nvim" })
 
 	-- Local plugins for machine-dependant extensions
 	require("local_plugins")(use)
