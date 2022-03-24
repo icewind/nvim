@@ -12,5 +12,6 @@ require("telescope").setup({
 		preview = {
 			treesitter = false,
 		},
+		path_display = { "smart" },
 	},
 })
