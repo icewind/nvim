@@ -22,6 +22,10 @@ local language = "en-US"
 ---@param arguments table
 local function get_words_from_args(arguments)
 	-- Not really sure if there could be more than one argument and whether I need to process them.
+	if arguments["words"] == nil then
+		vim.notify("Saving false positives is not supported yet")
+		return {}
+	end
 	return arguments[1].words[language] or {}
 end
 
