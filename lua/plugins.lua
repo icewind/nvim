@@ -170,6 +170,11 @@ require("packer").startup(function(use)
 	-- Svelte support
 	use("leafOfTree/vim-svelte-plugin")
 
+	-- Databases
+	use({ "tpope/vim-dadbod" })
+	use({ "kristijanhusak/vim-dadbod-ui" })
+	use({ "kristijanhusak/vim-dadbod-completion" })
+
 	-- The allmighty Prettier
 	use({
 		"prettier/vim-prettier",

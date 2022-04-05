@@ -1,9 +1,12 @@
-require("null-ls").setup({
+local null_ls = require("null-ls")
+null_ls.setup({
 	sources = {
 		-- Formatting
-		require("null-ls").builtins.formatting.stylua,
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.sqlfluff,
 
 		-- Diagnostics
-		require("null-ls").builtins.diagnostics.eslint,
+		null_ls.builtins.diagnostics.eslint,
+		null_ls.builtins.diagnostics.sqlfluff,
 	},
 })

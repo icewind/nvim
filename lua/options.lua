@@ -96,3 +96,6 @@ g["prettier#autoformat_require_pragma"] = 0
 
 -- Rust analyzer format on save
 g["rustfmt_autosave"] = 1
+
+-- SQL completion
+vim.cmd([[autocmd FileType sql setlocal omnifunc=vim_dadbod_completion#omni]])
