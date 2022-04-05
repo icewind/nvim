@@ -97,7 +97,10 @@ g["prettier#autoformat_require_pragma"] = 0
 -- Rust analyzer format on save
 g["rustfmt_autosave"] = 1
 
--- SQL completion
+-- Databases
+g["db_ui_use_nerd_fonts"] = 1
+g["db_ui_save_location"] = "~/Projects/SQLPad"
+
 vim.cmd(
 	[[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({sources={{name='vim-dadbod-completion'}}})]]
 )
