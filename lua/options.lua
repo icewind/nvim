@@ -38,6 +38,8 @@ vim.cmd([[
 -- Always show signs column
 opt.signcolumn = "yes:1"
 
+opt.mouse = "a"
+
 opt.termguicolors = true
 opt.number = true
 opt.relativenumber = true
