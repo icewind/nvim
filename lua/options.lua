@@ -49,6 +49,9 @@ opt.colorcolumn = "120"
 opt.splitright = true
 opt.splitbelow = true
 
+-- Global status line for neovim 0.7+
+opt.laststatus = 3
+
 -- Default formatting options
 opt.shiftwidth = 4
 opt.tabstop = 4
