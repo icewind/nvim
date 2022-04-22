@@ -5,19 +5,20 @@
 -- since they have sane defaults in neovim 0.4+
 --------------------------------------------------------------------------------
 
-local opt = vim.opt
+local set = vim.opt
 local g = vim.g
 
 -- Allows to hide the editor
-opt.hidden = true
+set.hidden = true
 
 -- Language settings
 -- TODO: Find another spell checker. Embedded spell checker is pretty bad dealing with CamelCase words
-opt.spelllang = { "en_us" }
+set.spell = false
+set.spelllang = { "en_us" }
 
 -- Encoding options
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
+set.encoding = "utf-8"
+set.fileencoding = "utf-8"
 
 -- Editor appearance
 vim.cmd([[
@@ -36,37 +37,38 @@ vim.cmd([[
 ]])
 
 -- Always show signs column
-opt.signcolumn = "yes:1"
+set.signcolumn = "yes:1"
 
-opt.mouse = "a"
+set.mouse = "a"
 
-opt.termguicolors = true
-opt.number = true
-opt.relativenumber = true
-opt.ruler = true
-opt.background = "dark"
-opt.colorcolumn = "120"
-opt.splitright = true
-opt.splitbelow = true
+set.termguicolors = true
+set.number = true
+set.relativenumber = true
+set.ruler = true
+set.background = "dark"
+set.colorcolumn = "120"
+set.splitright = true
+set.splitbelow = true
 
 -- Global status line for neovim 0.7+
-opt.laststatus = 3
+set.laststatus = 3
 
 -- Default formatting options
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.expandtab = true
-opt.smartindent = true
-opt.wrap = false
-opt.ai = true
-opt.si = true
+set.conceallevel = 0
+set.shiftwidth = 4
+set.tabstop = 4
+set.expandtab = true
+set.smartindent = true
+set.wrap = false
+set.ai = true
+set.si = true
 
 -- Search options
-opt.hlsearch = true
-opt.incsearch = true
-opt.smartcase = true
-opt.ignorecase = true
-opt.showmatch = true
+set.hlsearch = true
+set.incsearch = true
+set.smartcase = true
+set.ignorecase = true
+set.showmatch = true
 
 -- Disable swap files. No need because of version control systems
 g.nobackup = true
@@ -87,7 +89,7 @@ vim.cmd([[
 ]])
 
 -- Autocompletion
-opt.completeopt = "menu,menuone,noselect"
+set.completeopt = { "menuone", "noselect" }
 
 -- Code highlight in markdown files
 g.markdown_fenced_languages = { "rust", "cs", "typescript", "javascript", "python", "css", "json" }
