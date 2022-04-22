@@ -17,7 +17,10 @@ map("n", "j", "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent
 map("n", "<Tab>", ":bnext<CR>")
 map("n", "<S-Tab>", ":bprevious<CR>")
 
--- Better window navigation
+-- Better buffer close
+map("n", "<leader>q", "<cmd>Bdelete!<CR>")
+
+-- Better buffer navigation
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")

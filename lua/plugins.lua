@@ -43,6 +43,9 @@ require("packer").startup(function(use)
 
 	use("tpope/vim-commentary") -- Create/remove comments using gc
 
+	-- Better buffer close functionality
+	use("moll/vim-bbye")
+
 	-- Select all the things with a nice UI
 	use({
 		"nvim-telescope/telescope.nvim",
