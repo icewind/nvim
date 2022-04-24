@@ -99,6 +99,9 @@ require("packer").startup(function(use)
 		config = get_config("gitsigns"),
 	})
 
+	-- Show indentation level with virtual text
+	use({ "lukas-reineke/indent-blankline.nvim", config = get_config("indent-blankline") })
+
 	-- Fancy notifications
 	use({
 		"rcarriga/nvim-notify",
