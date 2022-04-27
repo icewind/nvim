@@ -52,6 +52,8 @@ require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" },
 		config = get_config("telescope"),
 	})
+	-- Use telescope instead of the standard ui.select
+	use({ "nvim-telescope/telescope-ui-select.nvim" })
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
