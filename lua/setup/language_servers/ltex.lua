@@ -21,12 +21,11 @@ local language = "en-US"
 ---Get a words list from the LSP action arguments
 ---@param arguments table
 local function get_words_from_args(arguments)
-	-- Not really sure if there could be more than one argument and whether I need to process them.
-	if arguments[1]["words"] == nil then
-		vim.notify("Saving false positives is not supported yet")
-		return {}
-	end
 	return arguments[1].words[language] or {}
+end
+
+local function get_rules_from_args(arguments)
+	return arguments[1].ruleIds[language] or {}
 end
 
 local function get_dictionary_path(type)
@@ -105,6 +104,8 @@ local function notifyLSPClient(dict)
 		return vim.notify(string.format("Invalid dictionary type: %s", dict))
 	end
 	-- Acutally update the configuration of LSP client
+	print(dict)
+	vim.pretty_print(dictionaries[dict].words)
 	client.config.settings.ltex[dict] = {
 		[language] = dictionaries[dict].words,
 	}
@@ -117,14 +118,17 @@ vim.lsp.buf.execute_command = function(command)
 	local affected_dictionary = ""
 	if command.command == "_ltex.addToDictionary" then
 		affected_dictionary = dictionaryType.dictionary
-	elseif command.command == "_ltex.disableRule" then
+		dictionaries[affected_dictionary]:add(get_words_from_args(command.arguments))
+	elseif command.command == "_ltex.disableRules" then
 		affected_dictionary = dictionaryType.disabled
+		dictionaries[affected_dictionary]:add(get_rules_from_args(command.arguments))
 	elseif command.command == "_ltex.hideFalsePositives" then
 		affected_dictionary = dictionaryType.hidden
+		-- TODO: Add support for false positives
 	else
 		return execute_command(command)
 	end
-	dictionaries[affected_dictionary]:add(get_words_from_args(command.arguments))
+
 	return notifyLSPClient(affected_dictionary)
 end
 
