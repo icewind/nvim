@@ -1,3 +1,5 @@
+-- Using a language server from vscode
+-- npm i -g vscode-langservers-extracted
 return function(capabilities, on_attach)
 	require("lspconfig").html.setup({
 		capabilities = capabilities,

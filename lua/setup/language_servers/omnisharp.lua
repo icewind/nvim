@@ -1,5 +1,6 @@
 -- .NET Development using standalone OmniSharp and neovim's builtin language server
 -- The language server itself is downloaded from the Github and stored in the filesystem
+-- manually downloaded from github
 local pid = vim.fn.getpid()
 local omnisharp_path = os.getenv("HOME") .. "/tools/omnisharp/run"
 

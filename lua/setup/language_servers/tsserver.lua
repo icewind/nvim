@@ -1,3 +1,4 @@
+-- npm i -g typescript-language-server
 return function(capabilites, on_attach)
 	require("lspconfig").tsserver.setup({
 		capabilites = capabilites,

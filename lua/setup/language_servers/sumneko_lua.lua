@@ -1,5 +1,6 @@
 -- Development of lua plugins and neovim configuration files
 -- The language server itself is installed using Homebrew
+-- brew install lua-language-server
 local runtime_path = vim.split(package.path, ";")
 local library = {}
 local global_includes = {}

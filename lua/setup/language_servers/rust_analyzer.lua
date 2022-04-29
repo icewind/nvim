@@ -1,3 +1,4 @@
+-- brew install rust-analyzer
 return function(_, on_attach)
 	require("rust-tools").setup({
 		server = {
