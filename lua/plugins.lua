@@ -194,6 +194,13 @@ require("packer").startup(function(use)
 	-- Initialization of this plugin takes place in the lsp config
 	use({ "simrat39/rust-tools.nvim" })
 
+	use({
+		"nvim-neorg/neorg",
+		ft = "norg",
+		after = "nvim-treesitter", -- You may want to specify Telescope here as well
+		config = get_config("neorg"),
+	})
+
 	-- Local plugins for machine-dependant extensions
 	require("local_plugins")(use)
 
