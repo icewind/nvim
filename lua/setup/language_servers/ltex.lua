@@ -104,8 +104,6 @@ local function notifyLSPClient(dict)
 		return vim.notify(string.format("Invalid dictionary type: %s", dict))
 	end
 	-- Acutally update the configuration of LSP client
-	print(dict)
-	vim.pretty_print(dictionaries[dict].words)
 	client.config.settings.ltex[dict] = {
 		[language] = dictionaries[dict].words,
 	}
