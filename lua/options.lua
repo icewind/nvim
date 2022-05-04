@@ -73,7 +73,7 @@ set.showmatch = true
 -- Disable swap files. No need because of version control systems
 g.nobackup = true
 g.noswapfile = true
-g.nounofile = true
+g.noundofile = true
 
 -- Using treesitter to fold/unfold
 vim.wo.foldlevel = 20
