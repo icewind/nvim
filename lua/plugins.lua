@@ -38,8 +38,8 @@ require("packer").startup(function(use)
 
 	-- Favorite color themes
 	use("sainnhe/everforest")
-	use("sainnhe/sonokai")
-	use("arcticicestudio/nord-vim")
+	-- use("sainnhe/sonokai")
+	-- use("arcticicestudio/nord-vim")
 
 	use("tpope/vim-commentary") -- Create/remove comments using gc
 
