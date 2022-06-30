@@ -27,4 +27,8 @@ cmp.setup({
 		-- Don't look at the current buffer for the word smaller than 5 chars
 		{ name = "buffer", keyword_length = 5 },
 	},
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
 })

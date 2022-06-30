@@ -150,6 +150,8 @@ require("packer").startup(function(use)
 		config = get_config("luasnip"),
 	})
 
+	use("editorconfig/editorconfig-vim")
+
 	-- Snippets and integration of snippets and cmp
 	use("saadparwaiz1/cmp_luasnip")
 
