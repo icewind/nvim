@@ -5,8 +5,8 @@ require("bufferline").setup({
 	},
 	highlights = {
 		fill = {
-			guibg = "#313C41",
-			guifg = "#7a8478",
+			bg = "#313C41",
+			fg = "#7a8478",
 		},
 	},
 })
