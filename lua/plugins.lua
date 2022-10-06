@@ -85,6 +85,9 @@ require("packer").startup(function(use)
 		config = get_config("bufferline"),
 	})
 
+	-- Terminal
+	use({ "akinsho/toggleterm.nvim", tag = "*", config = get_config("toggleterm") })
+
 	-- TODO: Replace this vim lua analog once it will be as functional
 	use("tpope/vim-surround")
 
