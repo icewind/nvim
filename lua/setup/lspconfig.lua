@@ -37,10 +37,10 @@ local on_attach = function(client, bufnr)
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 
 	-- Automatically format the file before save if the formatter is available
-	if client.resolved_capabilities.document_formatting then
+	if client.server_capabilities.document_formatting then
 		vim.api.nvim_command("augroup FormatOnSave")
 		vim.api.nvim_command("autocmd! * <buffer>")
-		vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+		vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
 		vim.api.nvim_command("augroup END")
 	end
 end
