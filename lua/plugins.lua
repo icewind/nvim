@@ -192,7 +192,18 @@ require("packer").startup(function(use)
 	use({
 		"prettier/vim-prettier",
 		run = "yarn install",
-		ft = { "javascript", "typescript", "css", "less", "scss", "graphql", "markdown", "vue", "html" },
+		ft = {
+			"javascript",
+			"typescript",
+			"typescriptreact",
+			"css",
+			"less",
+			"scss",
+			"graphql",
+			"markdown",
+			"vue",
+			"html",
+		},
 	})
 
 	-- Better rust development

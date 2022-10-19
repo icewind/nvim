@@ -34,7 +34,7 @@ local on_attach = function(client, bufnr)
 
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fd", "<cmd>lua vim.lsp.buf.formatting()<cr>", opts)
 
-	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
+	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 
 	-- Automatically format the file before save if the formatter is available
 	if client.server_capabilities.document_formatting then
