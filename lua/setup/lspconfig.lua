@@ -37,7 +37,7 @@ local on_attach = function(client, bufnr)
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.format()' ]])
 
 	-- Automatically format the file before save if the formatter is available
-	if client.server_capabilities.document_formatting then
+	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_command("augroup FormatOnSave")
 		vim.api.nvim_command("autocmd! * <buffer>")
 		vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
@@ -46,7 +46,7 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Require and set up specific language servers
 for _, server in ipairs(files_in_folder({ "setup", "language_servers" })) do
