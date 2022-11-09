@@ -58,10 +58,14 @@ set.conceallevel = 0
 set.shiftwidth = 4
 set.tabstop = 4
 set.expandtab = true
-set.smartindent = true
 set.wrap = false
 set.ai = true
 set.si = true
+set.autoindent = true
+set.smartindent = true
+set.cindent = true
+set.copyindent = true
+set.preserveindent = true
 
 -- Search options
 set.hlsearch = true
