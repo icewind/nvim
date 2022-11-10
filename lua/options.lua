@@ -23,6 +23,7 @@ set.fileencoding = "utf-8"
 -- Editor appearance
 vim.cmd([[
 	let g:everforest_background = 'hard'
+    let g:everforest_better_performance = 1
 	colorscheme everforest
 ]])
 
