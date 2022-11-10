@@ -61,11 +61,6 @@ set.expandtab = true
 set.wrap = false
 set.ai = true
 set.si = true
-set.autoindent = true
-set.smartindent = true
-set.cindent = true
-set.copyindent = true
-set.preserveindent = true
 
 -- Search options
 set.hlsearch = true
