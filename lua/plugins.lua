@@ -206,6 +206,9 @@ require("packer").startup(function(use)
 		},
 	})
 
+	-- Improve startup time
+	use("lewis6991/impatient.nvim")
+
 	-- Better rust development
 	-- Initialization of this plugin takes place in the lsp config
 	use({ "simrat39/rust-tools.nvim" })
