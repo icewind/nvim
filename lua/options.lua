@@ -41,6 +41,7 @@ vim.cmd([[
 set.signcolumn = "yes:1"
 
 set.mouse = "a"
+set.clipboard = "unnamedplus"
 
 set.termguicolors = true
 set.number = true
@@ -56,12 +57,13 @@ set.laststatus = 3
 
 -- Default formatting options
 set.conceallevel = 0
-set.shiftwidth = 4
-set.tabstop = 4
+set.shiftwidth = 2
+set.tabstop = 2
+set.softtabstop = 2
 set.expandtab = true
 set.wrap = false
-set.ai = true
-set.si = true
+set.autoindent = true
+set.smarttab = true
 
 -- Search options
 set.hlsearch = true
