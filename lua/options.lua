@@ -21,6 +21,7 @@ set.encoding = "utf-8"
 set.fileencoding = "utf-8"
 
 -- Editor appearance
+-- TODO: Port these to lua
 vim.cmd([[
 	let g:everforest_background = 'hard'
     let g:everforest_better_performance = 1
@@ -28,6 +29,7 @@ vim.cmd([[
 ]])
 
 -- Remember the last cursor position
+-- TODO: Port these to lua
 vim.cmd([[
 	filetype plugin indent on
 
@@ -113,3 +115,19 @@ g["db_ui_save_location"] = "~/Projects/SQLPad"
 vim.cmd(
 	[[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({sources={{name='vim-dadbod-completion'}}})]]
 )
+
+-- Defold specific filetypes
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.script", "*.gui_script", "*.render_script", "*.editor_script", "*.lua" },
+	command = "setlocal filetype=lua",
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.vsh", "*.fsh", "*.fp", "*.vp" },
+	command = "setlocal filetype=glsl",
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.fui" },
+	command = "setlocal filetype=fuior",
+})
