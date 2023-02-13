@@ -114,7 +114,7 @@ require('packer').startup(function(use)
 	}
 
 	-- Surround the text
-	use("kylechui/nvim-surround")
+	use({ "kylechui/nvim-surround", config = get_config('surround') })
 
 	-- Additional text objects via treesitter
 	use {
@@ -158,7 +158,7 @@ require('packer').startup(function(use)
 	})
 
 	use({ 'lukas-reineke/indent-blankline.nvim', config = get_config("indent-blankline") }) -- Add indentation guides even on blank lines
-	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+	use({ 'numToStr/Comment.nvim', config = get_config('comment') }) -- "gc" to comment visual regions/lines
 	use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
 
