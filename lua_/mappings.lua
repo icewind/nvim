@@ -3,7 +3,7 @@ local function map(mode, lhs, rhs, opts)
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
-	vim.keymap.set(mode, lhs, rhs, options)
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 vim.g.mapleader = " "
@@ -30,7 +30,6 @@ map("n", "<C-l>", "<C-w>l")
 map("n", "<leader>h", ":split<cr>")
 map("n", "<leader>v", ":vsplit<cr>")
 
--- Faster split resize
 map("n", "<C-S-Left>", ":vertical resize +3<cr>", { noremap = true, silent = true })
 map("n", "<C-S-Right>", ":vertical resize -3<cr>", { noremap = true, silent = true })
 map("n", "<C-S-Up>", ":resize +3<cr>", { noremap = true, silent = true })
@@ -48,26 +47,14 @@ map("v", "<leader>s", "<cmd>lua require'hop'.hint_char1()<cr>")
 map("n", "<M-b>", ":NvimTreeToggle<CR>")
 
 -- Telescope
+map("n", "<leader>p", '<cmd>lua require("telescope.builtin").find_files()<cr>')
+map("n", "<leader>g", '<cmd>lua require("telescope.builtin").live_grep()<cr>')
 
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+map("n", "<leader>i", '<cmd>lua require("telescope.builtin").git_status()<cr>')
 
--- TODO: Check if this one will be helpful to me
-vim.keymap.set('n', '<leader>/', function()
-	-- You can pass additional configuration to telescope to change theme, layout, etc.
-	require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-		winblend = 10,
-		previewer = false,
-	})
-end, { desc = '[/] Fuzzily search in current buffer]' })
-
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-
-vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = '[G]it [S]tatus' })
+map("n", "<leader>cs", '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>')
+map("n", "<leader>cd", '<cmd>lua require("telescope.builtin").diagnostics{ bufnr=0 }<cr>')
+map("n", "<leader>cr", '<cmd>lua require("telescope.builtin").lsp_references()<cr>')
 
 -- Bufferline
 map("n", "<leader>b", ":BufferLinePick<cr>", { noremap = true, silent = true })
@@ -82,11 +69,9 @@ map("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>", { noremap = true, silen
 map("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>", { noremap = true, silent = true })
 
 -- Display diagnostics messages
-map("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true, desc = 'Diagnostics' })
-map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>",
-	{ silent = true, noremap = true, desc = 'Workspace diagnogstics' })
-map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>",
-	{ silent = true, noremap = true, desc = 'Document diagnostics' })
+map("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true })
+map("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", { silent = true, noremap = true })
+map("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", { silent = true, noremap = true })
 
 -- Database
-map("n", "<leader>du", "<cmd>DBUIToggle<cr>", { silent = true, noremap = true, desc = "[D]atabase [U]i" })
+map("n", "<leader>du", "<cmd>DBUIToggle<cr>", { silent = true, noremap = true })

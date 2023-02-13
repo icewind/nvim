@@ -8,6 +8,7 @@
 local set = vim.opt
 local g = vim.g
 
+-- Allows to hide the editor
 set.hidden = true
 
 -- Language settings
@@ -83,24 +84,19 @@ vim.wo.foldlevel = 20
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
+-- Highlight yanked text
+vim.cmd([[
+	augroup highlight_yank
+		autocmd!
+		au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=400}
+	augroup END
+]])
 
 -- Autocompletion
 set.completeopt = { "menuone", "noselect" }
 
--- TODO: Move the following lines out of the main config file
-
 -- Code highlight in markdown files
-g.markdown_fenced_languages = { "rust", "go", "typescript", "javascript", "python", "sql", "css", "json" }
+g.markdown_fenced_languages = { "rust", "cs", "typescript", "javascript", "python", "sql", "css", "json" }
 
 -- Enable typescript syntax highlight for svelte files
 g.vim_svelte_plugin_use_typescript = 1
@@ -119,3 +115,19 @@ g["db_ui_save_location"] = "~/Projects/SQLPad"
 vim.cmd(
 	[[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({sources={{name='vim-dadbod-completion'}}})]]
 )
+
+-- Defold specific filetypes
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.script", "*.gui_script", "*.render_script", "*.editor_script", "*.lua" },
+	command = "setlocal filetype=lua",
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.vsh", "*.fsh", "*.fp", "*.vp" },
+	command = "setlocal filetype=glsl",
+})
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.fui" },
+	command = "setlocal filetype=fuior",
+})

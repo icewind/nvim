@@ -1,66 +1,46 @@
--- Automatically install packer if it is not installed at the following path
-local fn = vim.fn
+-- Utils
+local files_in_folder = require("utils").files_in_folder
 
-local packer_install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-local packer_bootstrap = nil
+-- Install packer
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
-if fn.empty(fn.glob(packer_install_path)) > 0 then
-	packer_bootstrap = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		packer_install_path,
-	})
+-- Is it is the first time we starting the editor with this configuraiton
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	is_bootstrap = true
+	vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+	vim.cmd [[packadd packer.nvim]]
 end
 
--- Split plugin configuration into different files in the `setup` folder.
+-- Automatically re-compile packer whenever the configuration has changed
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+	command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
+	group = packer_group,
+	pattern = vim.fn.expand '$MYVIMRC',
+})
+
+-- Split plugin configuration into different files in the `setup/plugins` folder.
 local function get_config(name)
 	return string.format('require("setup.%s")', name)
 end
 
--- Automatically compile packer once the list of plugins changes
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
-
 -- Add plugins
-require("packer").startup(function(use)
-	use("wbthomason/packer.nvim") -- Package manager
-
-	-- Need to check the following plugings. I got used to git cli so will see if they are needed
-	-- use 'tpope/vim-fugitive' -- Git commands in nvim
-	-- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-
-	-- Favorite color themes
-	use("sainnhe/everforest")
-	-- use("sainnhe/sonokai")
-	-- use("arcticicestudio/nord-vim")
-
-	use("tpope/vim-commentary") -- Create/remove comments using gc
+require('packer').startup(function(use)
+	-- ---------------------------------------------------------------
+	-- General
+	-- ---------------------------------------------------------------
+	-- Package manager
+	use("wbthomason/packer.nvim")
 
 	-- Better buffer close functionality
 	use("moll/vim-bbye")
 
-	-- Select all the things with a nice UI
-	use({
-		"nvim-telescope/telescope.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = get_config("telescope"),
-	})
-	-- Use telescope instead of the standard ui.select
-	use({ "nvim-telescope/telescope-ui-select.nvim" })
+	-- Improve startup time
+	use("lewis6991/impatient.nvim")
 
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		config = get_config("treesitter"),
-		run = ":TSUpdate",
-	})
-	use("nvim-treesitter/nvim-treesitter-textobjects")
+	-- Terminal
+	use({ "akinsho/toggleterm.nvim", tag = "*", config = get_config("toggleterm") })
 
 	-- File manager
 	use({
@@ -71,7 +51,13 @@ require("packer").startup(function(use)
 		config = get_config("tree"),
 	})
 
-	-- Status line
+
+	-- ---------------------------------------------------------------
+	-- Appearance
+	-- ---------------------------------------------------------------
+	use("sainnhe/everforest")
+
+	-- Better statusline
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -85,55 +71,31 @@ require("packer").startup(function(use)
 		config = get_config("bufferline"),
 	})
 
-	-- Terminal
-	use({ "akinsho/toggleterm.nvim", tag = "*", config = get_config("toggleterm") })
+	-- The one and only Telescope
+	use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
+	-- Use telescope instead of the standard ui.select
+	use({ "nvim-telescope/telescope-ui-select.nvim" })
 
-	-- TODO: Replace this vim lua analog once it will be as functional
-	use("tpope/vim-surround")
 
-	use({
-		"phaazon/hop.nvim",
-		event = "BufReadPre",
-		config = get_config("hop"),
-	})
 
-	use({
-		"lewis6991/gitsigns.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		event = "BufReadPre",
-		config = get_config("gitsigns"),
-	})
+	-- ---------------------------------------------------------------
+	-- LSP Configuration & Plugins
+	-- ---------------------------------------------------------------
+	use {
+		'neovim/nvim-lspconfig',
+		requires = {
+			-- Automatically install LSPs to stdpath for neovim
+			'williamboman/mason.nvim',
+			'williamboman/mason-lspconfig.nvim',
 
-	-- Show indentation level with virtual text
-	use({ "lukas-reineke/indent-blankline.nvim", config = get_config("indent-blankline") })
+			-- Useful status updates for LSP
+			'j-hui/fidget.nvim',
 
-	-- Fancy notifications
-	use({
-		"rcarriga/nvim-notify",
-		config = get_config("notify"),
-	})
-
-	-- Autocompletion and LSP
-	use({
-		"neovim/nvim-lspconfig",
-		config = get_config("lspconfig"),
-	})
-
-	use({
-		"hrsh7th/nvim-cmp",
-		config = get_config("cmp"),
-	})
-
-	-- Get completions from the LSP
-	use("hrsh7th/cmp-nvim-lsp")
-
-	-- Add kind icons into completion dropdown
-	use("onsails/lspkind-nvim")
-
-	-- Get completions from the current buffer
-	use("hrsh7th/cmp-buffer")
-
-	use({ "jose-elias-alvarez/null-ls.nvim", config = get_config("nullls") })
+			-- Additional lua configuration, makes nvim stuff amazing
+			'folke/neodev.nvim',
+		},
+		config = get_config('lspconfig')
+	}
 
 	-- Show function signature on type
 	use({
@@ -141,24 +103,31 @@ require("packer").startup(function(use)
 		config = get_config("lspsignature"),
 	})
 
-	use("mattn/emmet-vim")
+	-- ---------------------------------------------------------------
+	-- Editing
+	-- ---------------------------------------------------------------
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = function()
+			pcall(require('nvim-treesitter.install').update { with_sync = true })
+		end,
+	}
 
+	-- Surround the text
+	use("kylechui/nvim-surround")
+
+	-- Additional text objects via treesitter
+	use {
+		'nvim-treesitter/nvim-treesitter-textobjects',
+		after = 'nvim-treesitter',
+	}
+
+	-- Quick jump to the letter or symbol on the screen
 	use({
-		"windwp/nvim-autopairs",
-		config = get_config("autopairs"),
+		"phaazon/hop.nvim",
+		event = "BufReadPre",
+		config = get_config("hop"),
 	})
-
-	use({
-		"L3MON4D3/LuaSnip",
-		config = get_config("luasnip"),
-	})
-
-	use("editorconfig/editorconfig-vim")
-
-	-- Snippets and integration of snippets and cmp
-	use("saadparwaiz1/cmp_luasnip")
-
-	use("rafamadriz/friendly-snippets")
 
 	-- Display code issues
 	use({
@@ -167,57 +136,56 @@ require("packer").startup(function(use)
 		config = get_config("trouble"),
 	})
 
-	-- Lua development(mainly for neovim)
-	use("tjdevries/nlua.nvim") -- Language server for Lua
-	use("euclidianAce/BetterLua.vim") -- Better syntax highlight
-	use("tjdevries/manillua.nvim") -- Folds for Lua code
+	-- Autocompletion
+	use {
+		'hrsh7th/nvim-cmp',
+		requires = {
+			'hrsh7th/cmp-nvim-lsp',
+			'L3MON4D3/LuaSnip',
+			'saadparwaiz1/cmp_luasnip',
 
-	-- Markdown preview
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && yarn install",
-		ft = { "markdown" },
-		cmd = "MarkdownPreview",
-	})
+			-- Add kind icons into completion dropdown
+			'onsails/lspkind-nvim',
 
-	-- Svelte support
-	use("leafOfTree/vim-svelte-plugin")
-
-	-- Databases
-	use({ "tpope/vim-dadbod" })
-	use({ "kristijanhusak/vim-dadbod-ui" })
-	use({ "kristijanhusak/vim-dadbod-completion" })
-
-	-- The allmighty Prettier
-	use({
-		"prettier/vim-prettier",
-		run = "yarn install",
-		ft = {
-			"javascript",
-			"typescript",
-			"typescriptreact",
-			"css",
-			"less",
-			"scss",
-			"graphql",
-			"markdown",
-			"vue",
-			"html",
+			-- Get completions from the current buffer
+			'hrsh7th/cmp-buffer'
 		},
+	}
+
+	use({
+		"windwp/nvim-autopairs",
+		config = get_config("autopairs"),
 	})
 
-	-- Improve startup time
-	use("lewis6991/impatient.nvim")
+	use({ 'lukas-reineke/indent-blankline.nvim', config = get_config("indent-blankline") }) -- Add indentation guides even on blank lines
+	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+	use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
-	-- Better rust development
-	-- Initialization of this plugin takes place in the lsp config
-	use({ "simrat39/rust-tools.nvim" })
 
-	-- Local plugins for machine-dependant extensions
-	require("local_plugins")(use)
+	-- ---------------------------------------------------------------
+	-- Git related plugins
+	-- ---------------------------------------------------------------
+	use 'tpope/vim-fugitive'
+	use 'tpope/vim-rhubarb'
+	use 'lewis6991/gitsigns.nvim'
 
-	-- Automatically setup packer configuration after the first install
-	if packer_bootstrap then
-		require("packer").sync()
+	-- ---------------------------------------------------------------
+	-- Language/Framework specific plugins
+	-- ---------------------------------------------------------------
+	-- These plugins should not use `get_config` helper and contain all the required parameters in one file
+	for _, name in ipairs(files_in_folder({ "language_plugins" })) do
+		require(string.format("language_plugins.%s", name))(use)
+	end
+
+
+	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
+	-- This might be used to add plugins you don't want to put into the main config
+	local has_plugins, plugins = pcall(require, 'custom.plugins')
+	if has_plugins then
+		plugins(use)
+	end
+
+	if is_bootstrap then
+		require('packer').sync()
 	end
 end)
