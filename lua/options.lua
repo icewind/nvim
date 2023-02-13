@@ -23,7 +23,7 @@ set.fileencoding = "utf-8"
 -- Editor appearance
 -- TODO: Port these to lua
 vim.cmd([[
-	let g:everforest_background = 'hard'
+	let g:everforest_background = 'medium'
     let g:everforest_better_performance = 1
 	colorscheme everforest
 ]])
