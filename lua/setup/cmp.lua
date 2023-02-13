@@ -12,7 +12,7 @@ cmp.setup({
 	mapping = {
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
+		["<C-d>"] = cmp.mapping.scroll_docs( -4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
@@ -25,7 +25,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		-- Don't look at the current buffer for the word smaller than 5 chars
-		{ name = "buffer", keyword_length = 5 },
+		{ name = "buffer",  keyword_length = 5 },
 	},
 	window = {
 		completion = cmp.config.window.bordered(),

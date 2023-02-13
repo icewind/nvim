@@ -150,6 +150,7 @@ require('packer').startup(function(use)
 			-- Get completions from the current buffer
 			'hrsh7th/cmp-buffer'
 		},
+		config = get_config('cmp')
 	}
 
 	use({
