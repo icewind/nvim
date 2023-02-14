@@ -72,6 +72,7 @@ local language_servers = {
 	gopls = {},
 	rust_analyzer = {},
 	tsserver = {},
+	ltex = {},
 }
 
 -- Ensure the servers above are installed
