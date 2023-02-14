@@ -72,10 +72,16 @@ require('packer').startup(function(use)
 	})
 
 	-- The one and only Telescope
-	use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-	-- Use telescope instead of the standard ui.select
-	use({ "nvim-telescope/telescope-ui-select.nvim" })
-
+	use {
+		'nvim-telescope/telescope.nvim',
+		branch = '0.1.x',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			-- Use telescope instead of the standard ui.select
+			"nvim-telescope/telescope-ui-select.nvim"
+		},
+		config = get_config("telescope")
+	}
 
 
 	-- ---------------------------------------------------------------
