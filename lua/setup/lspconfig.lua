@@ -47,9 +47,18 @@ local on_attach = function(client, bufnr)
 		vim.lsp.buf.format()
 	end, { desc = 'Format current buffer with LSP' })
 
+	local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
+
 	-- And automatically format on save
-	if client.server_capabilities.documentFormattingProvider then
-		vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = augroup,
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format()
+			end,
+		})
 	end
 end -- on_attach
 
