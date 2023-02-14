@@ -1,8 +1,8 @@
 --------------------------------------------------------------------------------
 -- Global editor options
 --
--- Some of the options for older versions of neovim were omitted
--- since they have sane defaults in neovim 0.4+
+-- Some of the options for older versions of NeoVim were omitted
+-- since they have sane defaults in NeoVim 0.4+
 --------------------------------------------------------------------------------
 
 local set = vim.opt
@@ -11,9 +11,11 @@ local g = vim.g
 set.hidden = true
 
 -- Language settings
--- TODO: Find another spell checker. Embedded spell checker is pretty bad dealing with CamelCase words
+-- Disabled it because it works pretty bad...
 set.spell = false
 set.spelllang = { "en_us" }
+set.spellsuggest = "5"
+set.spelloptions = "camel"
 
 -- Encoding options
 set.encoding = "utf-8"
@@ -23,7 +25,7 @@ set.fileencoding = "utf-8"
 -- TODO: Port these to lua
 vim.cmd([[
 	let g:everforest_background = 'medium'
-    let g:everforest_better_performance = 1
+	let g:everforest_better_performance = 1
 	colorscheme everforest
 ]])
 
@@ -32,10 +34,10 @@ vim.cmd([[
 vim.cmd([[
 	filetype plugin indent on
 
-    augroup vim-remember-cursor-position
-        autocmd!
-        autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-    augroup END
+	augroup vim-remember-cursor-position
+		autocmd!
+		autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+	augroup END
 ]])
 
 -- Always show signs column
@@ -58,9 +60,10 @@ set.laststatus = 3
 
 -- Default formatting options
 set.conceallevel = 0
-set.shiftwidth = 2
-set.tabstop = 2
-set.softtabstop = 2
+set.shiftwidth = 4
+set.tabstop = 4
+set.softtabstop = 4
+
 set.expandtab = true
 set.wrap = false
 set.autoindent = true
@@ -87,11 +90,11 @@ vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = '*',
 })
 
 -- Autocompletion
