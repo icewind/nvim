@@ -174,7 +174,7 @@ require('packer').startup(function(use)
 	-- ---------------------------------------------------------------
 	use 'tpope/vim-fugitive'
 	use 'tpope/vim-rhubarb'
-	use 'lewis6991/gitsigns.nvim'
+	use({ 'lewis6991/gitsigns.nvim', config = get_config("gitsigns") })
 
 	-- ---------------------------------------------------------------
 	-- Language/Framework specific plugins
