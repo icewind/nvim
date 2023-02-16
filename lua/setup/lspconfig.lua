@@ -1,4 +1,4 @@
--- LSP Configuraiton
+-- LSP Configuration
 require("mason").setup()
 
 -- Improve lua development
@@ -10,6 +10,22 @@ require("fidget").setup()
 -- Attach LSP to autocompletion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+-- Use specific language servers to format specific files
+local lsp_formatters_map = {
+	lua = "null-ls",
+}
+
+-- to avoid the conflict we will select an appropriate server for specified file types
+local lsp_format = function(bufnr)
+	vim.lsp.buf.format({
+		filter = function(client)
+			local buffer_type = vim.api.nvim_buf_get_option(bufnr, "filetype")
+			return lsp_formatters_map[buffer_type] == nil or lsp_formatters_map[buffer_type] == client.name
+		end,
+		bufnr = bufnr,
+	})
+end
 
 local on_attach = function(client, bufnr)
 	local nmap = function(keys, func, desc)
@@ -44,7 +60,7 @@ local on_attach = function(client, bufnr)
 
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-		vim.lsp.buf.format()
+		lsp_format(bufnr)
 	end, { desc = "Format current buffer with LSP" })
 
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
@@ -56,7 +72,7 @@ local on_attach = function(client, bufnr)
 			group = augroup,
 			buffer = bufnr,
 			callback = function()
-				vim.lsp.buf.format()
+				lsp_format(bufnr)
 			end,
 		})
 	end
