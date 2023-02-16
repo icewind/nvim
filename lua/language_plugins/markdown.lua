@@ -7,4 +7,3 @@ return function(use)
 		cmd = "MarkdownPreview",
 	})
 end
-
