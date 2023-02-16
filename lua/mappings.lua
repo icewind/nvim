@@ -82,12 +82,18 @@ map("n", "<leader>8", "<Cmd>BufferLineGoToBuffer 8<CR>", { noremap = true, silen
 map("n", "<leader>9", "<Cmd>BufferLineGoToBuffer 9<CR>", { noremap = true, silent = true })
 
 -- Display diagnostics messages
+map(
+	"n",
+	"<leader>e",
+	"<cmd>lua vim.diagnostic.open_float()<cr>",
+	{ silent = true, noremap = true, desc = "Show diagnostic message in float window" }
+)
 map("n", "<leader>xx", "<cmd>Trouble<cr>", { silent = true, noremap = true, desc = "Diagnostics" })
 map(
 	"n",
 	"<leader>xw",
 	"<cmd>Trouble workspace_diagnostics<cr>",
-	{ silent = true, noremap = true, desc = "Workspace diagnogstics" }
+	{ silent = true, noremap = true, desc = "Workspace diagnostics" }
 )
 map(
 	"n",
