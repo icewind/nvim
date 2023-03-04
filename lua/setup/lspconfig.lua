@@ -84,11 +84,12 @@ local language_servers = {
 		workspace = { checkThirdParty = false },
 		telemetry = { enable = false },
 	},
+	ltex = {},
+	marksman = {},
 	pyright = {},
 	gopls = {},
 	rust_analyzer = {},
 	tsserver = {},
-	ltex = {},
 }
 
 -- Ensure the servers above are installed
