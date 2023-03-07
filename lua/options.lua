@@ -119,6 +119,10 @@ g["rustfmt_autosave"] = 1
 g["db_ui_use_nerd_fonts"] = 1
 g["db_ui_save_location"] = "~/Projects/SQLPad"
 
+-- Markdown preview theme.
+-- Better to see mermaid diagrams contrast before exporting them to Confluence
+g.mkdp_theme = "light"
+
 vim.cmd(
 	[[autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({sources={{name='vim-dadbod-completion'}}})]]
 )
