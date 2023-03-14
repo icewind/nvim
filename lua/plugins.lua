@@ -169,6 +169,9 @@ require("packer").startup(function(use)
 	-- For tools that have no LSP implementation like cspell
 	use({ "jose-elias-alvarez/null-ls.nvim", config = get_config("nullls") })
 
+	-- Code actions for ltex-ls
+	use({ "icewind/ltex-client.nvim", config = get_config("ltex-client") })
+
 	-- ---------------------------------------------------------------
 	-- Git related plugins
 	-- ---------------------------------------------------------------
