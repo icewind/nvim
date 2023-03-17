@@ -90,6 +90,7 @@ local language_servers = {
 	gopls = {},
 	rust_analyzer = {},
 	tsserver = {},
+	gdscript = {},
 }
 
 -- Ensure the servers above are installed
