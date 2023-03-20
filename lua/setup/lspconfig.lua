@@ -104,7 +104,7 @@ mason_lspconfig.setup_handlers({
 		require("lspconfig")[server_name].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			settings = language_servers[server_name],
+			settings = { [server_name] = language_servers[server_name] },
 		})
 	end,
 })
