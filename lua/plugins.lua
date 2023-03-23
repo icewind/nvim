@@ -107,6 +107,8 @@ require("packer").startup(function(use)
 		config = get_config("lspsignature"),
 	})
 
+	use("github/copilot.vim")
+
 	-- ---------------------------------------------------------------
 	-- Editing
 	-- ---------------------------------------------------------------
