@@ -119,6 +119,13 @@ require("lspconfig").gdscript.setup({
 })
 
 -- ---------------------------------------------------------------
+-- Integrate mason and null-ls to automatically install all the tools
+-- ---------------------------------------------------------------
+require("mason-null-ls").setup({
+	ensure_installed = { "stylua", "cspell", "rome" },
+})
+
+-- ---------------------------------------------------------------
 -- General LSP-related settings
 -- ---------------------------------------------------------------
 -- Custom diagnostics signs. Requires one of the nerd-fonts
