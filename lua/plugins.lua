@@ -170,7 +170,7 @@ require("packer").startup(function(use)
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
 	-- For tools that have no LSP implementation like cspell
-	use("jose-elias-alvarez/null-ls.nvim")
+	use({ "jose-elias-alvarez/null-ls.nvim", config = get_config("nullls") })
 
 	-- Code actions for ltex-ls
 	use({ "icewind/ltex-client.nvim", config = get_config("ltex-client") })

@@ -3,6 +3,7 @@ null_ls.setup({
 	sources = {
 		-- Formatting
 		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.prettierd,
 
 		-- Code actions
 		null_ls.builtins.code_actions.cspell,

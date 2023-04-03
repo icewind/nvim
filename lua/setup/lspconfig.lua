@@ -14,6 +14,9 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 -- Use specific language servers to format specific files
 local lsp_formatters_map = {
 	lua = "null-ls",
+	-- These null-ls should use prettierd
+	typescript = "null-ls",
+	typescriptreact = "null-ls",
 }
 
 -- to avoid the conflict we will select an appropriate server for specified file types
@@ -122,7 +125,8 @@ require("lspconfig").gdscript.setup({
 -- Integrate mason and null-ls to automatically install all the tools
 -- ---------------------------------------------------------------
 require("mason-null-ls").setup({
-	ensure_installed = { "stylua", "cspell", "rome" },
+	ensure_installed = { "stylua", "cspell", "prettierd", "eslint" },
+	automatic_setup = true,
 })
 
 -- ---------------------------------------------------------------
