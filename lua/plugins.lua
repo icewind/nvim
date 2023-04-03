@@ -91,6 +91,7 @@ require("packer").startup(function(use)
 			-- Automatically install LSPs to stdpath for neovim
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"jose-elias-alvarez/null-ls.nvim",
 			"jay-babu/mason-null-ls.nvim",
 
 			-- Useful status updates for LSP
@@ -169,8 +170,6 @@ require("packer").startup(function(use)
 	use({ "numToStr/Comment.nvim", config = get_config("comment") }) -- "gc" to comment visual regions/lines
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
-	-- For tools that have no LSP implementation like cspell
-	use({ "jose-elias-alvarez/null-ls.nvim", config = get_config("nullls") })
 
 	-- Code actions for ltex-ls
 	use({ "icewind/ltex-client.nvim", config = get_config("ltex-client") })
