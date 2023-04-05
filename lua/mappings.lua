@@ -40,8 +40,8 @@ map("n", "<C-S-Down>", ":resize -3<cr>", { noremap = true, silent = true })
 map("n", "<esc>", ":noh<cr><esc>", { silent = true })
 
 -- Hop(EasyMotion) for normal and visual modes
-map("n", "<leader>s", "<cmd>lua require'hop'.hint_char1()<cr>")
-map("v", "<leader>s", "<cmd>lua require'hop'.hint_char1()<cr>")
+map("n", "<leader><space>", "<cmd>lua require'hop'.hint_char1()<cr>")
+map("v", "<leader><space>", "<cmd>lua require'hop'.hint_char1()<cr>")
 
 -- Filetree
 -- M is mapped to Cmd in iTerm2 preferences
@@ -50,7 +50,9 @@ map("n", "<M-b>", ":NvimTreeToggle<CR>")
 -- Telescope
 
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
-vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
+
+-- Replaced this one with hop. See if i need this
+-- vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
 
 -- TODO: Check if this one will be helpful to me
 vim.keymap.set("n", "<leader>/", function()
