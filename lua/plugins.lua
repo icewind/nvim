@@ -119,6 +119,7 @@ require("packer").startup(function(use)
 		run = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 		end,
+		config = get_config("treesitter"),
 	})
 
 	-- Surround the text
@@ -169,7 +170,6 @@ require("packer").startup(function(use)
 	use({ "lukas-reineke/indent-blankline.nvim", config = get_config("indent-blankline") }) -- Add indentation guides even on blank lines
 	use({ "numToStr/Comment.nvim", config = get_config("comment") }) -- "gc" to comment visual regions/lines
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
-
 
 	-- Code actions for ltex-ls
 	use({ "icewind/ltex-client.nvim", config = get_config("ltex-client") })
