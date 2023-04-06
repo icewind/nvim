@@ -104,5 +104,8 @@ map(
 	{ silent = true, noremap = true, desc = "Document diagnostics" }
 )
 
+map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
+map("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+
 -- Database
 map("n", "<leader>du", "<cmd>DBUIToggle<cr>", { silent = true, noremap = true, desc = "[D]atabase [U]i" })
