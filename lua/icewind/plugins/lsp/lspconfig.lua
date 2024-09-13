@@ -127,12 +127,12 @@ local language_servers = {
             telemetry = { enable = false },
         },
     },
-    ltex = {
-        filetypes = { "markdown", "org", "restructuredtext" },
-    },
-    marksman = {},
-    pyright = {},
-    gopls = {},
+    -- ltex = {
+    --     filetypes = { "markdown", "org", "restructuredtext" },
+    -- },
+    -- marksman = {},
+    -- pyright = {},
+    -- gopls = {},
     rust_analyzer = {},
     tsserver = {
         init_options = {
@@ -142,10 +142,10 @@ local language_servers = {
         },
     },
     svelte = {},
-    astro = {},
+    -- astro = {},
     tailwindcss = {},
     eslint = {},
-    ruff = {},
+    -- ruff = {},
 }
 
 return {
